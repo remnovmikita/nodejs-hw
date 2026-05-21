@@ -4,10 +4,7 @@ import cors from 'cors';
 import 'dotenv/config';
 
 const app = express();
-const PORT = process.env.PORT;
-
-app.use(express.json());
-app.use(cors());
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -34,7 +31,7 @@ app.get('/notes', (req, res) => {
 
 app.get('/notes/:noteId', (req, res) => {
   const { noteId } = req.params;
-  res.status(200).json({ message: 'Retrieved note with ID: id_param' });
+  res.status(200).json({ message: `Retrieved note with ID: ${noteId}`  });
 });
 
 app.get('/test-error', () => {
