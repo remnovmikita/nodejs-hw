@@ -1,6 +1,6 @@
 import { HttpError } from "http-errors";
 
-const errorHandler = (error, req, res, next) => {
+ export const errorHandler = (error, req, res, next) => {
   const isProd = process.env.NODE_ENV === 'production';
 
   let status = 500;
@@ -15,4 +15,4 @@ const errorHandler = (error, req, res, next) => {
     message: isProd ? 'Something went wrong. Please try again later.' : message,
   });
 };
-export default errorHandler;
+
