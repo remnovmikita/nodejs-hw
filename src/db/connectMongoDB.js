@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import 'dotenv/config';
-import Note from '../models/note.js';
+import {Note} from '../models/note.js';
 const {MONGO_URL} = process.env;
 const connectMongoDB = async () => {
   try {
