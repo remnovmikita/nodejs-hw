@@ -1,0 +1,30 @@
+ import { model, Schema } from 'mongoose';
+
+ const sessionShema = new Schema({
+  userId:{
+    type: Schema.Types.ObjectId,
+    ref:"user",
+    required:true,
+  },
+  accessToken:{
+    type:String,
+    required:true,
+  },
+  refreshToken:{
+    type:String,
+    required:true,
+  },
+  accessTokenValidUntil:{
+    type: Date,
+    required:true,
+  },
+  refreshTokenValidUntil:{
+    type: Date,
+    required:true,
+  },
+ }, {versionKey:false, timestamps:true}
+);
+
+
+const Session = model("Session", sessionShema);
+export default Session;

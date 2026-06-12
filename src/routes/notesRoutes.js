@@ -1,11 +1,12 @@
 import { Router } from 'express';
-
+import { authenticate } from '../middleware/authenticate.js';
 import {getAllNotes, getNoteById, createNote, deleteNote, updateNote} from "../controllers/notesController.js";
 import { celebrate } from 'celebrate';
 import { createNoteSchema, getAllNotesSchema, noteIdSchema, updateNoteSchema } from '../validations/notesValidation.js';
 
 
 const notesRouter = Router();
+notesRouter.use(authenticate);
 notesRouter.get('/notes', celebrate(getAllNotesSchema) ,getAllNotes);
 
 notesRouter.get('/notes/:noteId', celebrate(noteIdSchema), getNoteById);
