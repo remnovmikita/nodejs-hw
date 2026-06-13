@@ -1,11 +1,9 @@
 
 import crypto from 'crypto';
 
-import {
-  accessTokenLifeTime,
-  refreshTokenLifeTime,
-} from '../constants/time.js';
-import Session from '../models/session.js';
+
+import {Session} from '../models/session.js';
+import { FIFTEEN_MINUTES, ONE_DAY } from '../constants/time.js';
 
 export const createSession = async (userId) => {
   const accessToken = crypto.randomUUID();
@@ -15,8 +13,8 @@ export const createSession = async (userId) => {
     userId,
     accessToken,
     refreshToken,
-    accessTokenValidUntil: new Date(Date.now() + accessTokenLifeTime),
-    refreshTokenValidUntil: new Date(Date.now() + refreshTokenLifeTime),
+    accessTokenValidUntil: new Date(Date.now() + FIFTEEN_MINUTES),
+    refreshTokenValidUntil: new Date(Date.now() + ONE_DAY),
   });
   console.log(session);
 
@@ -27,20 +25,20 @@ export const setSessionCookies = (res, session) => {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: accessTokenLifeTime,
+    maxAge: FIFTEEN_MINUTES,
   });
 
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: refreshTokenLifeTime,
+    maxAge: ONE_DAY,
   });
 
   res.cookie('sessionId', session._id, {
     httpOnly: true,
     secure: true,
     sameSite: 'none',
-    maxAge: refreshTokenLifeTime,
+    maxAge: ONE_DAY,
   });
 };

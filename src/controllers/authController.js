@@ -1,6 +1,6 @@
 import createHttpError from "http-errors";
 import { User } from "../models/user.js";
-import Session from "../models/session.js";
+import {Session} from "../models/session.js";
 import bcrypt from "bcrypt";
 import { createSession, setSessionCookies } from "../services/auth.js";
 
@@ -50,7 +50,7 @@ export const refreshUserSession = async (req,res)=>{
     throw createHttpError(401, "Session token expired");
   }
 
-  Session.deleteOne({userId:session.userId});
+  await Session.deleteOne({userId:session.userId});
   const newSession = await createSession(session.userId);
   setSessionCookies(res, newSession);
 

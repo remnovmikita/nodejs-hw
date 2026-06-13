@@ -1,12 +1,9 @@
-import Session from "../models/session.js";
+import {Session} from "../models/session.js";
 import { User } from "../models/user.js";
 import createHttpError from "http-errors";
-export const authenticate = async(req, resizeBy, next)=>{
+export const authenticate = async(req, res, next)=>{
   const {accessToken} = req.cookies;
   const session = await Session.findOne({accessToken});
-  if(!session){
-    throw createHttpError(401, "Session not found");
-  }
   if(session.accessTokenValidUntil < new Date()){
     throw createHttpError(401, "Access  token expired");
   }

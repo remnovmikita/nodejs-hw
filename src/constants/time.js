@@ -1,2 +1,2 @@
-export const accessTokenLifeTime = 1000*60*15;
-export const refreshTokenLifeTime = 100*60*60*24*7;
+export const FIFTEEN_MINUTES = 15 * 60 * 1000;
+export const ONE_DAY = 24 * 60 * 60 * 1000;

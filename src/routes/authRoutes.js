@@ -15,12 +15,12 @@ import {
 const authRouter = Router();
 authRouter.post(
   '/auth/register',
-  celebrate(registerUserSchema, { avortEarly: false }),
+  celebrate(registerUserSchema, { abortEarly: false }),
   registerUser,
 );
 authRouter.post(
   '/auth/login',
-  celebrate(loginUserSchema, { avortEarly: false }),
+  celebrate(loginUserSchema, { abortEarly: false }),
   loginUser,
 );
 authRouter.post('/auth/refresh', refreshUserSession);

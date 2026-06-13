@@ -58,7 +58,7 @@ export const deleteNote = async (req, res) => {
     userId,
   });
   if (!note) {
-    throw createHttpError(404, 'Note not found');
+    throw createHttpError(404,  `Note with id=${noteId} not found`);
   }
   res.status(200).json(note);
 };
