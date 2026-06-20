@@ -9,6 +9,7 @@ import {errorHandler} from './middleware/errorHandler.js';
 import notesRouter from './routes/notesRoutes.js';
 import { errors } from 'celebrate';
 import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(logger);
 app.use(express.json());
 app.use('/', authRouter);
 app.use('/', notesRouter);
+app.use(userRouter);
 
 app.use(notFoundHandler);
 app.use(errors());
